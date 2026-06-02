@@ -24,10 +24,11 @@ pub fn Chalk::color(self : Chalk, color : Colors) -> Chalk {
   Cons(self, RenderColor(color))
 }
 
+///|
 pub fn[T : Show] Chalk::render(self : Chalk, to_render : T) -> String {
   let mut result = to_render.to_string()
   let mut current_chalk = self
-  
+
   while true {
     match current_chalk {
       Cons(next_chalk, action) => {

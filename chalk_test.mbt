@@ -34,10 +34,7 @@ test "modifier render uses start and end ansi codes" {
 
 ///|
 test "reset modifier renders symmetric reset codes" {
-  assert_eq(
-    chalk().modifier(Reset).render("hello"),
-    "\u001B[0mhello\u001B[0m",
-  )
+  assert_eq(chalk().modifier(Reset).render("hello"), "\u001B[0mhello\u001B[0m")
 }
 
 ///|
@@ -49,8 +46,7 @@ test "chained styles wrap in call order" {
     .render("hello")
 
   assert_eq(
-    rendered,
-    "\u001B[41m\u001B[1m\u001B[32mhello\u001B[39m\u001B[22m\u001B[49m",
+    rendered, "\u001B[41m\u001B[1m\u001B[32mhello\u001B[39m\u001B[22m\u001B[49m",
   )
 }
 

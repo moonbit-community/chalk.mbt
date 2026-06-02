@@ -1,8 +1,8 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "Lampese/moonbit-chalk"
+package "moonbit-community/chalk"
 
 // Values
-fn chalk() -> Chalk
+pub fn chalk() -> Chalk
 
 // Errors
 
@@ -30,10 +30,10 @@ pub(all) enum Chalk {
   Cons(Chalk, Render)
   Nil
 }
-fn Chalk::background(Self, BackGroundColors) -> Self
-fn Chalk::color(Self, Colors) -> Self
-fn Chalk::modifier(Self, Modifier) -> Self
-fn[T : Show] Chalk::render(Self, T) -> String
+pub fn Chalk::background(Self, BackGroundColors) -> Self
+pub fn Chalk::color(Self, Colors) -> Self
+pub fn Chalk::modifier(Self, Modifier) -> Self
+pub fn[T : Show] Chalk::render(Self, T) -> String
 
 pub(all) enum Colors {
   Black
