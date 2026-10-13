@@ -1,17 +1,17 @@
 ///|
 test "render without styles returns plain text" {
-  assert_eq(chalk().render("hello"), "hello")
+  assert_eq(@chalk.chalk().render("hello"), "hello")
 }
 
 ///|
 test "render supports Show values" {
-  assert_eq(chalk().render(42), "42")
+  assert_eq(@chalk.chalk().render(42), "42")
 }
 
 ///|
 test "color render uses foreground ansi codes" {
   assert_eq(
-    chalk().color(RedBright).render("hello"),
+    @chalk.chalk().color(RedBright).render("hello"),
     "\u001B[91mhello\u001B[39m",
   )
 }
@@ -19,7 +19,7 @@ test "color render uses foreground ansi codes" {
 ///|
 test "background render uses background ansi codes" {
   assert_eq(
-    chalk().background(BgBlueBright).render("hello"),
+    @chalk.chalk().background(BgBlueBright).render("hello"),
     "\u001B[104mhello\u001B[49m",
   )
 }
@@ -27,19 +27,22 @@ test "background render uses background ansi codes" {
 ///|
 test "modifier render uses start and end ansi codes" {
   assert_eq(
-    chalk().modifier(Underline).render("hello"),
+    @chalk.chalk().modifier(Underline).render("hello"),
     "\u001B[4mhello\u001B[24m",
   )
 }
 
 ///|
 test "reset modifier renders symmetric reset codes" {
-  assert_eq(chalk().modifier(Reset).render("hello"), "\u001B[0mhello\u001B[0m")
+  assert_eq(
+    @chalk.chalk().modifier(Reset).render("hello"),
+    "\u001B[0mhello\u001B[0m",
+  )
 }
 
 ///|
 test "chained styles wrap in call order" {
-  let rendered = chalk()
+  let rendered = @chalk.chalk()
     .background(BgRed)
     .modifier(Bold)
     .color(Green)
@@ -52,7 +55,7 @@ test "chained styles wrap in call order" {
 
 ///|
 test "chalk values are reusable and immutable" {
-  let base = chalk().color(Cyan)
+  let base = @chalk.chalk().color(Cyan)
   let derived = base.modifier(Italic)
 
   assert_eq(base.render("hello"), "\u001B[36mhello\u001B[39m")
@@ -64,6 +67,9 @@ test "chalk values are reusable and immutable" {
 
 ///|
 test "multiple modifiers nest with independent closing codes" {
-  let rendered = chalk().modifier(Underline).modifier(Strikethrough).render("x")
+  let rendered = @chalk.chalk()
+    .modifier(Underline)
+    .modifier(Strikethrough)
+    .render("x")
   assert_eq(rendered, "\u001B[4m\u001B[9mx\u001B[29m\u001B[24m")
 }

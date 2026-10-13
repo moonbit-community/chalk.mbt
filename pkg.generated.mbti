@@ -75,4 +75,3 @@ pub(all) enum Render {
 // Type aliases
 
 // Traits
-

@@ -19,7 +19,7 @@ pub(all) enum Colors {
 }
 
 ///|
-fn color_to_index(color : Colors) -> Int {
+fn color_to_index(color : Colors) -> Int32 {
   match color {
     Black => 30
     Red => 31
