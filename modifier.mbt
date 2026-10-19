@@ -12,7 +12,7 @@ pub(all) enum Modifier {
 }
 
 ///|
-fn modifier_to_index(modifier : Modifier) -> (Int, Int) {
+fn modifier_to_index(modifier : Modifier) -> (Int32, Int32) {
   match modifier {
     Reset => (0, 0)
     Bold => (1, 22)
